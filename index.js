@@ -81,8 +81,6 @@ function createDepartment(id, name) {
       function(err, res) {
         if (err) throw err;
         console.log(res.affectedRows + " here!\n");
-        // Call updateProduct AFTER the INSERT completes
-        updateProduct();
       }
     );
     console.log(query.sql);
@@ -196,7 +194,6 @@ function deleteEmp(id) {
       function(err, res) {
         if (err) throw err;
         console.log(res.affectedRows + " deleted!\n");
-
       }
     );
     homePg();
@@ -206,7 +203,7 @@ function deleteEmp(id) {
     console.log("Deleting...\n");
     intId = parseInt(id);
     connection.query(
-      "DELETE FROM depratment WHERE ?",
+      "DELETE FROM department WHERE ?",
       {
         id: intId,
       },
@@ -659,7 +656,7 @@ readRole();
 
 const newReq =  function () {
 inquirer.prompt(refQ).then((response) => {
-            console.log(response);
+            // console.log(response);
             tableReturn = response.tableChoice
             crudReturn = response.crudChoice;
 
