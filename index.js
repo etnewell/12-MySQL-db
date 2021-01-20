@@ -14,7 +14,7 @@ var connection = mysql.createConnection({
   user: "root",
 
   // Your password
-  password: "",
+  password: "Th1sS3rv3rR0cks",
   database: "emp_manage_db"
 });
 connection.connect(function(err) {
@@ -45,6 +45,7 @@ function createEmp(id, firstName, lastName, roleId, managerId) {
       }
     );
     console.log(query.sql);
+    homePg();
 };
 
 function createRole(id, title, salary, departmentID) {
@@ -57,7 +58,7 @@ function createRole(id, title, salary, departmentID) {
         id: intId,
         title: title,
         salary: salary,
-        depertment_id: intDepId,
+        department_id: intDepId,
       },
       function(err, res) {
         if (err) throw err;
@@ -65,6 +66,7 @@ function createRole(id, title, salary, departmentID) {
       }
     );
     console.log(query.sql);
+    homePg();
 };
 
 function createDepartment(id, name) {
@@ -84,6 +86,7 @@ function createDepartment(id, name) {
       }
     );
     console.log(query.sql);
+    homePg();
 };    
 
  // Server edit request declarations -----------
@@ -111,7 +114,8 @@ function createDepartment(id, name) {
       }
     );
     console.log(query.sql);
-  }
+    homePg();
+  };
   
   function updateRole(id, title, salary, departmentID) {
     console.log("Updating...\n");
@@ -124,7 +128,7 @@ function createDepartment(id, name) {
         {
             title: title,
             salary: intSalary,
-            depertment_id: intDepId,
+            department_id: intDepId,
         },
         {
             id: intId,
@@ -136,7 +140,8 @@ function createDepartment(id, name) {
       }
     );
     console.log(query.sql);
-  }
+    homePg();
+  };
 
   function updateDepartment(id, name) {
     console.log("Updating...\n");
@@ -157,7 +162,8 @@ function createDepartment(id, name) {
       }
     );
     console.log(query.sql);
-  }
+    homePg();
+  };
 
 
 //   Server delete request declarations
@@ -176,7 +182,8 @@ function deleteEmp(id) {
 
       }
     );
-  }
+    homePg();
+  };
 
   function deleteRole(id) {
     console.log("Deleting...\n");
@@ -192,7 +199,8 @@ function deleteEmp(id) {
 
       }
     );
-  }
+    homePg();
+  };
 
   function deleteDepartment(id) {
     console.log("Deleting...\n");
@@ -208,7 +216,8 @@ function deleteEmp(id) {
 
       }
     );
-  }
+    homePg();
+  };
 
 // Server view request declarations
 
@@ -218,8 +227,8 @@ function readEmp() {
       if (err) throw err;
       // Log all results of the SELECT statement
       console.log(res);
-      connection.end();
     });
+    homePg();
   }
 
   function readRole() {
@@ -228,8 +237,8 @@ function readEmp() {
       if (err) throw err;
       // Log all results of the SELECT statement
       console.log(res);
-      connection.end();
     });
+    homePg();
   }
 
   function readDepartment() {
@@ -238,8 +247,8 @@ function readEmp() {
       if (err) throw err;
       // Log all results of the SELECT statement
       console.log(res);
-      connection.end();
     });
+    homePg();
   }
 
 
@@ -488,15 +497,6 @@ const delRoleQ = [
         ]
     } 
 ];
-// const viewRoleQ = [
-//     {
-//         type: 'input',
-//         name: 'idIn',
-//         message: 'What is the ID of the role you would like to view?'
-//     },
-// ];
-// -----------------------
-
 
 // More nav declarations for funcitonality Employee
 
@@ -512,8 +512,6 @@ const newEmpInit = function () {
         var managerId = response.mangId;
 
         createEmp(id, first, last, roleId, managerId)
-
-        homePg();
 });
 };
 
@@ -529,8 +527,6 @@ const editEmpInit = function () {
         var managerId = response.mangId;
 
         updateEmp(id, first, last, roleId, managerId)
-
-        homePg();
 });
 };
 
@@ -543,8 +539,6 @@ const delEmpInit = function () {
 
         if (response.delConfirm === 'Yes'){
         deleteEmp(id)};
-
-        homePg();
 });
 };
 
@@ -569,8 +563,6 @@ const newDepInit = function () {
         var name = response.dep;
 
         createDepartment(id, name)
-
-        homePg();
 });
 };
 
@@ -583,8 +575,6 @@ const editDepInit = function () {
         var name = response.depNewName;
 
         updateDepartment(id, name)
-        homePg();
-
 });
 };
 
@@ -597,7 +587,6 @@ const delDepInit = function () {
 
         if (response.delConfirm === 'Yes'){
         deleteDepartment(id)};
-        homePg();
 });
 };
 
@@ -623,7 +612,6 @@ const newRoleInit = function () {
         var departmentID = response.depId;
 
         createRole(id, title, salary, departmentID)
-        homePg();
 });
 };
 
@@ -638,7 +626,6 @@ const editRoleInit = function () {
         var departmentID = response.depId;
 
         updateRole(id, title, salary, departmentID)
-        homePg();
 });
 };
 
@@ -651,7 +638,6 @@ const delRoleInit = function () {
 
         if (response.delConfirm === 'Yes'){
         deleteRole(id)};
-        homePg();
 });
 };
 
